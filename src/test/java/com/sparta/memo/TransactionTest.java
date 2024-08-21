@@ -1,7 +1,9 @@
 package com.sparta.memo;
 
+import com.sparta.memo.dto.MemoRequestDto;
 import com.sparta.memo.entity.Memo;
 import com.sparta.memo.repository.MemoRepository;
+import com.sparta.memo.service.MemoService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.Disabled;
@@ -20,6 +22,8 @@ public class TransactionTest {
 
     @Autowired
     MemoRepository memoRepository;
+    @Autowired
+    private MemoService memoService;
 
     @Test
     @Transactional
@@ -49,7 +53,6 @@ public class TransactionTest {
     @Rollback(value = false)
     @DisplayName("트랜잭션 전파 테스트")
     void test3() {
-        memoRepository.createMemo(em);
         System.out.println("테스트 test3 메서드 종료");
     }
 }
